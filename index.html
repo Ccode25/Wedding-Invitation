@@ -220,81 +220,9 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    
     <script>
-        (function(e) {
-            "use strict";
-            e.fn.counterUp = function(t) {
-                var n = e.extend({ time: 400, delay: 10 }, t);
-                return this.each(function() {
-                    var t = e(this),
-                        r = n,
-                        i = function() {
-                            var e = [],
-                                n = r.time / r.delay,
-                                i = t.text(),
-                                s = /[0-9]+,[0-9]+/.test(i);
-                            i = i.replace(/,/g, "");
-                            var o = /^[0-9]+$/.test(i),
-                                u = /^[0-9]+\.[0-9]+$/.test(i),
-                                a = u ? (i.split(".")[1] || []).length : 0;
-                            for (var f = n; f >= 1; f--) {
-                                var l = parseInt((i / n) * f);
-                                u && (l = parseFloat((i / n) * f).toFixed(a));
-                                if (s) while (/(\d+)(\d{3})/.test(l.toString())) l = l.toString().replace(/(\d+)(\d{3})/, "$1,$2");
-                                e.unshift(l);
-                            }
-                            t.data("counterup-nums", e);
-                            t.text("0");
-                            var c = function() {
-                                t.text(t.data("counterup-nums").shift());
-                                if (t.data("counterup-nums").length) setTimeout(t.data("counterup-func"), r.delay);
-                                else {
-                                    delete t.data("counterup-nums");
-                                    t.data("counterup-nums", null);
-                                    t.data("counterup-func", null);
-                                }
-                            };
-                            t.data("counterup-func", c);
-                            setTimeout(t.data("counterup-func"), r.delay);
-                        };
-                    t.waypoint(i, { offset: "100%", triggerOnce: !0 });
-                });
-            };
-        })(jQuery);
-
-        function updateCounter() {
-            const now = new Date();
-            const eventDate = new Date('2025-05-17T12:00:00');
-            const currentTime = now.getTime();
-            const eventTime = eventDate.getTime();
-            const remainingTime = eventTime - currentTime;
-
-            const seconds = Math.floor((remainingTime / 1000) % 60);
-            const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
-            const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
-            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
-        }
-
-        $(document).ready(function() {
-            // Update counter once on page load
-            updateCounter();
-
-            // Apply counterUp animation only once on page load
-            $('.counter').counterUp({
-                delay: 10,
-                time: 400
-            });
-
-            // Update counter every second without animation
-            setInterval(updateCounter, 1000);
-        });
+       
     </script>
 
   
@@ -548,6 +476,8 @@
 </footer>
 
     <!-- JS here -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
@@ -586,6 +516,81 @@
     <!-- Jquery Plugins, main Jquery -->	
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+
+    <script>
+    (function(e) {
+        "use strict";
+        e.fn.counterUp = function(t) {
+            var n = e.extend({ time: 400, delay: 10 }, t);
+            return this.each(function() {
+                var t = e(this),
+                    r = n,
+                    i = function() {
+                        var e = [],
+                            n = r.time / r.delay,
+                            i = t.text(),
+                            s = /[0-9]+,[0-9]+/.test(i);
+                        i = i.replace(/,/g, "");
+                        var o = /^[0-9]+$/.test(i),
+                            u = /^[0-9]+\.[0-9]+$/.test(i),
+                            a = u ? (i.split(".")[1] || []).length : 0;
+                        for (var f = n; f >= 1; f--) {
+                            var l = parseInt((i / n) * f);
+                            u && (l = parseFloat((i / n) * f).toFixed(a));
+                            if (s) while (/(\d+)(\d{3})/.test(l.toString())) l = l.toString().replace(/(\d+)(\d{3})/, "$1,$2");
+                            e.unshift(l);
+                        }
+                        t.data("counterup-nums", e);
+                        t.text("0");
+                        var c = function() {
+                            t.text(t.data("counterup-nums").shift());
+                            if (t.data("counterup-nums").length) setTimeout(t.data("counterup-func"), r.delay);
+                            else {
+                                delete t.data("counterup-nums");
+                                t.data("counterup-nums", null);
+                                t.data("counterup-func", null);
+                            }
+                        };
+                        t.data("counterup-func", c);
+                        setTimeout(t.data("counterup-func"), r.delay);
+                    };
+                t.waypoint(i, { offset: "100%", triggerOnce: !0 });
+            });
+        };
+    })(jQuery);
+
+    function updateCounter() {
+        const now = new Date();
+        const eventDate = new Date('2025-05-17T12:00:00');
+        const currentTime = now.getTime();
+        const eventTime = eventDate.getTime();
+        const remainingTime = eventTime - currentTime;
+
+        const seconds = Math.floor((remainingTime / 1000) % 60);
+        const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
+        const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+
+    $(document).ready(function() {
+        // Update counter once on page load
+        updateCounter();
+
+        // Apply counterUp animation only once on page load
+        $('.counter').counterUp({
+            delay: 10,
+            time: 400
+        });
+
+        // Update counter every second without animation
+        setInterval(updateCounter, 1000);
+    });
+</script>
     
 </body>
 </html>
