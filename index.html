@@ -278,68 +278,49 @@
       <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
       <script>
-        (function ($) {
+        (function (e) {
           "use strict";
-          $.fn.counterUp = function (options) {
-            var settings = $.extend({ time: 400, delay: 10 }, options);
+          e.fn.counterUp = function (t) {
+            var n = e.extend({ time: 400, delay: 10 }, t);
             return this.each(function () {
-              var $this = $(this),
-                config = settings,
-                countFunction = function () {
-                  var numbers = [],
-                    divisions = config.time / config.delay,
-                    value = $this.text().replace(/,/g, ""),
-                    isFormatted = /[0-9]+,[0-9]+/.test(value);
-
-                  var isInteger = /^[0-9]+$/.test(value),
-                    isFloat = /^[0-9]+\.[0-9]+$/.test(value),
-                    decimalPlaces = isFloat
-                      ? (value.split(".")[1] || []).length
-                      : 0;
-
-                  for (var i = divisions; i >= 1; i--) {
-                    var num = parseInt((value / divisions) * i);
-                    if (isFloat)
-                      num = parseFloat((value / divisions) * i).toFixed(
-                        decimalPlaces
-                      );
-                    if (isFormatted) {
-                      while (/(\d+)(\d{3})/.test(num.toString())) {
-                        num = num.toString().replace(/(\d+)(\d{3})/, "$1,$2");
-                      }
-                    }
-                    numbers.unshift(num);
+              var t = e(this),
+                r = n,
+                i = function () {
+                  var e = [],
+                    n = r.time / r.delay,
+                    i = t.text(),
+                    s = /[0-9]+,[0-9]+/.test(i);
+                  i = i.replace(/,/g, "");
+                  var o = /^[0-9]+$/.test(i),
+                    u = /^[0-9]+\.[0-9]+$/.test(i),
+                    a = u ? (i.split(".")[1] || []).length : 0;
+                  for (var f = n; f >= 1; f--) {
+                    var l = parseInt((i / n) * f);
+                    u && (l = parseFloat((i / n) * f).toFixed(a));
+                    if (s)
+                      while (/(\d+)(\d{3})/.test(l.toString()))
+                        l = l.toString().replace(/(\d+)(\d{3})/, "$1,$2");
+                    e.unshift(l);
                   }
-
-                  $this.data("counterup-nums", numbers);
-                  $this.text("0");
-
-                  var updateCount = function () {
-                    var nums = $this.data("counterup-nums");
-                    if (Array.isArray(nums) && nums.length > 0) {
-                      $this.text(nums.shift());
-                      setTimeout($this.data("counterup-func"), config.delay);
-                    } else {
-                      $this.data("counterup-nums", null);
-                      $this.data("counterup-func", null);
+                  t.data("counterup-nums", e);
+                  t.text("0");
+                  var c = function () {
+                    t.text(t.data("counterup-nums").shift());
+                    if (t.data("counterup-nums").length)
+                      setTimeout(t.data("counterup-func"), r.delay);
+                    else {
+                      delete t.data("counterup-nums");
+                      t.data("counterup-nums", null);
+                      t.data("counterup-func", null);
                     }
                   };
-
-                  $this.data("counterup-func", updateCount);
-                  setTimeout($this.data("counterup-func"), config.delay);
+                  t.data("counterup-func", c);
+                  setTimeout(t.data("counterup-func"), r.delay);
                 };
-
-              if ($.fn.waypoint) {
-                $this.waypoint(countFunction, {
-                  offset: "100%",
-                  triggerOnce: true,
-                });
-              } else {
-                countFunction();
-              }
+              t.waypoint(i, { offset: "100%", triggerOnce: !0 });
             });
           };
-        })(jQuery);git 
+        })(jQuery);
 
         function updateCounter() {
           const now = new Date();
@@ -714,10 +695,8 @@
     <script src="./assets/js/jquery.sticky.js"></script>
 
     <!-- counter , waypoint -->
-    <!-- <script src="./assets/js/jquery.counterup.min.js"></script>
-    <script src="./assets/js/waypoints.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
 
     <!-- contact js -->
     <script src="./assets/js/contact.js"></script>
