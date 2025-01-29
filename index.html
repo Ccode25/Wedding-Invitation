@@ -546,53 +546,55 @@
       </div>
       <!-- Gallery-2 img End-->
       <!--? Start map Area-->
+
       <section class="contact-sections">
         <div class="d-area">
-          <div
-            id="map"
-            style="height: 235px; position: relative; overflow: hidden"
-          ></div>
+          <!-- Map Container -->
+          <div id="map" style="height: 235px"></div>
+
+          <!-- Add Leaflet.js Script -->
+          <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
           <script>
-            function initMap() {
-              var uluru = {
-                lat: -25.363,
-                lng: 131.044,
-              };
-              var grayStyles = [
+            document.addEventListener("DOMContentLoaded", function () {
+              var map = L.map("map").setView([14.617, 121.0405], 14); // Adjusted to center between locations
+
+              // Add OpenStreetMap tiles
+              L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
-                  featureType: "all",
-                  stylers: [
-                    {
-                      saturation: -90,
-                    },
-                    {
-                      lightness: 50,
-                    },
-                  ],
+                  attribution: "&copy; OpenStreetMap contributors",
+                }
+              ).addTo(map);
+
+              // Locations with updated coordinates
+              var locations = [
+                {
+                  coords: [14.6144, 121.0308], // Minor Basilica of the National Shrine of Our Lady of Mount Carmel
+                  name: "Minor Basilica of the National Shrine of Our Lady of Mount Carmel ",
+                  gmaps: "https://www.google.com/maps?q=14.6144,121.0308",
                 },
                 {
-                  elementType: "labels.text.fill",
-                  stylers: [
-                    {
-                      color: "#ccdee9",
-                    },
-                  ],
+                  coords: [14.6196, 121.0503], // Stalla Suites Events Place
+                  name: "Stalla Suites Events Place, 1008 Quezon Ave, Diliman",
+                  gmaps: "https://www.google.com/maps?q=14.6196,121.0503",
                 },
               ];
-              var map = new google.maps.Map(document.getElementById("map"), {
-                center: {
-                  lat: -31.197,
-                  lng: 150.744,
-                },
-                zoom: 9,
-                styles: grayStyles,
-                scrollwheel: false,
+
+              // Add markers for each location
+              locations.forEach((location) => {
+                L.marker(location.coords)
+                  .addTo(map)
+                  .bindPopup(
+                    `<b>${location.name}</b><br>
+            <a href="${location.gmaps}" target="_blank">Open in Google Maps</a>`
+                  );
               });
-            }
+            });
           </script>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap"></script>
         </div>
       </section>
+
       <!--? End map Area -->
     </main>
     <footer>
@@ -733,5 +735,10 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
   </body>
 </html>
