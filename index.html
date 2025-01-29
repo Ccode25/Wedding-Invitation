@@ -550,13 +550,14 @@
       <section class="contact-sections">
         <div class="d-area">
           <!-- Map Container -->
-          <div id="map" style="height: 235px"></div>
+          <div id="map" style="height: 50vh"></div>
 
           <!-- Add Leaflet.js Script -->
           <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
           <script>
             document.addEventListener("DOMContentLoaded", function () {
+              // Initialize the map, centered on the first location
               var map = L.map("map").setView([14.617, 121.0405], 14); // Center the map
 
               // Add OpenStreetMap tiles
@@ -573,25 +574,35 @@
                   coords: [14.614391600955265, 121.03050064875114], // Minor Basilica
                   name: "Minor Basilica of the National Shrine of Our Lady of Mount Carmel",
                   gmaps:
-                    "https://www.google.com/maps?q=14.614391600955265, 121.03050064875114",
+                    "https://www.google.com/maps?q=14.614391600955265,121.03050064875114",
                 },
                 {
                   coords: [14.63261671624774, 121.01941801603839], // Stalla Suites
                   name: "Stalla Suites Events Place, 1008 Quezon Ave, Diliman",
                   gmaps:
-                    "https://www.google.com/maps?q=14.63261671624774, 121.01941801603839",
+                    "https://www.google.com/maps?q=14.63261671624774,121.01941801603839",
                 },
               ];
 
-              // Add markers
+              // Initialize an array to store the markers
+              var markers = [];
+
+              // Add markers and store them
               locations.forEach((location) => {
-                L.marker(location.coords)
+                var marker = L.marker(location.coords)
                   .addTo(map)
                   .bindPopup(
                     `<b>${location.name}</b><br>
-                    <a href="${location.gmaps}" target="_blank">Open in Google Maps</a>`
+                      <a href="${location.gmaps}" target="_blank">Open in Google Maps</a>`
                   );
+                markers.push(marker);
               });
+
+              // Adjust the map view to fit both markers
+              var bounds = L.latLngBounds(
+                markers.map((marker) => marker.getLatLng())
+              );
+              map.fitBounds(bounds); // This will ensure both markers are visible
             });
           </script>
         </div>
