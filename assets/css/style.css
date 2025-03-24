@@ -2178,8 +2178,7 @@ hr {
   background-size: cover;
 }
 .slider-area {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(../img/hero/pexels-caio-56926.jpg);
+  background: url(../img/hero/DSC07007.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -2240,7 +2239,7 @@ hr {
   position: absolute;
   right: 34px;
   top: -17px;
-  background-image: url(../img/hero/hero_shape2.png);
+  /* background-image: url(../img/hero/hero_shape2.png); */
   width: 80px;
   height: 84px;
   background-repeat: no-repeat;
