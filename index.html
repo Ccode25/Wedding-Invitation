@@ -157,19 +157,111 @@
               </div>
             </div>
             <div class="col-lg-5">
-              <div class="story-img" style="width: 100%; max-width: 500px; margin: auto;">
-                <video 
-                  class="story2" 
-                  autoplay 
-                  muted 
-                  loop 
-                  playsinline 
-                  style="width: 100%; height: auto; display: block; object-fit: cover; border-radius: 10px;"
-                >
-                  <source src="assets/img/gallery/bc27a7a1-d4a1-4132-8e77-93c980938484.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="story-carousel" style="overflow: hidden; width: 100%; max-width: 500px; margin: auto; position: relative;">
+                <div id="storyWrapper" style="display: flex; transition: transform 0.4s ease;">
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 2.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 3.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 4.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 5.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 6.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                  <div class="story-slide" style="min-width: 100%; box-sizing: border-box;">
+                    <img src="assets/img/banner/Green Grey Watercolor Floral Wedding Invitation Mobile Video.zip - 7.jpg"
+                         style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;" />
+                  </div>
+                </div>
+              
+                <!-- Swipe Indicators -->
+                <div id="indicatorDots" style="text-align: center; margin-top: 10px;">
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                  <span class="dot" style="height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+                </div>
               </div>
+              
+              <script>
+                const wrapper = document.getElementById("storyWrapper");
+                const slides = document.querySelectorAll(".story-slide");
+                const dots = document.querySelectorAll(".dot");
+                let currentSlide = 0;
+              
+                let startX = 0;
+                let isDragging = false;
+              
+                // Touch events
+                wrapper.addEventListener("touchstart", (e) => {
+                  startX = e.touches[0].clientX;
+                });
+              
+                wrapper.addEventListener("touchend", (e) => {
+                  let diff = startX - e.changedTouches[0].clientX;
+                  handleSwipe(diff);
+                });
+              
+                // Mouse events
+                wrapper.addEventListener("mousedown", (e) => {
+                  isDragging = true;
+                  startX = e.clientX;
+                });
+              
+                wrapper.addEventListener("mousemove", (e) => {
+                  if (!isDragging) return;
+                  let diff = startX - e.clientX;
+                  handleSwipe(diff);
+                });
+              
+                wrapper.addEventListener("mouseup", () => {
+                  if (!isDragging) return;
+                  isDragging = false;
+                });
+              
+                wrapper.addEventListener("mouseleave", () => {
+                  if (isDragging) {
+                    isDragging = false;
+                  }
+                });
+              
+                function handleSwipe(diff) {
+                  const threshold = 50; // Minimum swipe distance
+                  if (diff > threshold && currentSlide < slides.length - 1) {
+                    currentSlide++;
+                  } else if (diff < -threshold && currentSlide > 0) {
+                    currentSlide--;
+                  }
+                  wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+                  updateDots();
+                }
+              
+                function updateDots() {
+                  dots.forEach((dot, index) => {
+                    dot.style.backgroundColor = index === currentSlide ? "#555" : "#bbb";
+                  });
+                }
+              
+                // Initial dot setup
+                updateDots();
+              </script>
+              
+              
+              
+              
             </div>
             
             
@@ -195,64 +287,26 @@
           </div>
           <div class="row align-items-end">
             <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="single-card text-center mb-30">
-                <div class="card-top">
-                  <span class="flaticon-chart"></span>
-                  <h4>The Ceremony</h4>
-                </div>
-                <div class="card-bottom">
-                  <ul>
-                    <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
-                    <li><i class="far fa-clock"></i>5:30 PM</li>
-                    <li>
-                      <i class="fas fa-map-marker-alt"></i>The Mayflower Hotel
-                    </li>
-                    <li>1127 Connecticut Avenue,NY</li>
-                    <li><i class="far fa-map"></i> Check out the map</li>
-                  </ul>
-                </div>
+              <div>
+                 <img src="./assets/img/gallery/The ceremony.zip - 1.jpeg" alt="Image" style="width: auto; max-width: 100%; display: block; border: 1px solid #4b694e;">
+              </div>
                 <div class="card-buttons mt-30"></div>
               </div>
-            </div>
+            
             <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="single-card active text-center mb-30">
-                <div class="card-top">
-                  <span class="flaticon-project"></span>
-                  <h4>The Reception</h4>
-                </div>
-                <div class="card-bottom">
-                  <ul>
-                    <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
-                    <li><i class="far fa-clock"></i>5:30 PM</li>
-                    <li>
-                      <i class="fas fa-map-marker-alt"></i>The Mayflower Hotel
-                    </li>
-                    <li>1127 Connecticut Avenue,NY</li>
-                    <li><i class="far fa-map"></i> Check out the map</li>
-                  </ul>
-                </div>
+              <div>
+                <img src="./assets/img/gallery/The ceremony.zip - 3.jpeg" alt="Image" style="width: auto; max-width: 100%; display: block; border: 1px solid #4b694e;">
+             </div>
                 <div class="card-buttons mt-30"></div>
               </div>
+              <div class="col-xl-4 col-lg-4 col-md-6">
+                <div>
+                  <img src="./assets/img/gallery/The ceremony.zip - 2.jpeg" alt="Image" style="width: auto; max-width: 100%; display: block; border: 1px solid #4b694e;">
+               </div>
+                  <div class="card-buttons mt-30"></div>
+                </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="single-card text-center mb-30">
-                <div class="card-top">
-                  <span class="flaticon-award"></span>
-                  <h4>The Party</h4>
-                </div>
-                <div class="card-bottom">
-                  <ul>
-                    <li><i class="fas fa-calendar-alt"></i>April 20, 2016</li>
-                    <li><i class="far fa-clock"></i>5:30 PM</li>
-                    <li>
-                      <i class="fas fa-map-marker-alt"></i>The Mayflower Hotel
-                    </li>
-                    <li>1127 Connecticut Avenue,NY</li>
-                    <li><i class="far fa-map"></i> Check out the map</li>
-                  </ul>
-                </div>
-                <div class="card-buttons mt-30"></div>
-              </div>
+           
             </div>
           </div>
         </div>
@@ -465,18 +519,7 @@
                     >
                       
                     </a>
-                    <a
-                      href="assets/img/gallery/Studio10.jpg"
-                      class="menorie-icon"
-                    >
-                      
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio11.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
+                   
                     <a
                       href="assets/img/gallery/Studio2.jpg"
                       class="menorie-icon"
@@ -495,18 +538,46 @@
                     >
                      
                     </a>
-                    <a
-                      href="assets/img/gallery/Studio5.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
+                  
                     <a
                       href="assets/img/gallery/Studio6.jpg"
                       class="menorie-icon"
                     >
                       
                     </a>
+                    
+              
+                    <a
+                      href="assets/img/gallery/Studio12.jpg"
+                      class="menorie-icon"
+                    >
+                      
+                    </a>
+                    <a
+                      href="assets/img/gallery/Studio13.jpg"
+                      class="menorie-icon"
+                    >
+                     
+                    </a>
+                    <a
+                      href="assets/img/gallery/Studio14.jpg"
+                      class="menorie-icon"
+                    >
+                     
+                    </a>
+                    <a
+                    href="assets/img/gallery/Studio19.jpg"
+                    class="menorie-icon"
+                  >
+                   
+                  </a>
+                    <a
+                      href="assets/img/gallery/Studio15.jpg"
+                      class="menorie-icon"
+                    >
+                     
+                    </a>
+
                     <a
                       href="assets/img/gallery/Studio7.jpg"
                       class="menorie-icon"
@@ -531,42 +602,7 @@
                     >
                      
                     </a>
-                    <a
-                      href="assets/img/gallery/Studio11.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio12.jpg"
-                      class="menorie-icon"
-                    >
-                      
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio13.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio14.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio15.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
-                    <a
-                      href="assets/img/gallery/Studio19.jpg"
-                      class="menorie-icon"
-                    >
-                     
-                    </a>
+                   
                     <a
                       href="assets/img/gallery/Binondobridge1.jpg"
                       class="menorie-icon"
