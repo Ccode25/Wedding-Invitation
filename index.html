@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en">
+
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -28,7 +29,7 @@
   </head>
   <body>
     <!-- Preloader Start -->
-    <div id="preloader-active">
+    <!-- <div id="preloader-active">
       <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
           <div class="preloader-circle"></div>
@@ -37,7 +38,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Preloader Start -->
 
     <main>
@@ -917,6 +918,12 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+
+    <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+    
 
     <link
       rel="stylesheet"
